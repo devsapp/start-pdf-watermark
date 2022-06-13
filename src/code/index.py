@@ -1,7 +1,5 @@
 # coding=utf-8
 import sys
-sys.path.insert(0, "/code/python")
-
 import json
 import os
 import oss2

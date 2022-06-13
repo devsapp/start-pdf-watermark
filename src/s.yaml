@@ -58,6 +58,7 @@ services:
         environmentVariables:
           TZ: "{{ timeZone }}"
           OSS_BUCKET: "{{ ossBucket }}"
+          PYTHONUSERBASE: /code/.s/python
 
         # 如果是很大的 PDF 文件， 想使用异步调用，可以开启如下配置,  将每次函数调用看做一个任务执行
         asyncConfiguration:
