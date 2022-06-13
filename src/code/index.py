@@ -1,14 +1,16 @@
+# coding=utf-8
+import sys
+sys.path.insert(0, "/code/python")
+
 from reportlab.pdfbase import pdfmetrics, ttfonts
 from PyPDF2 import PdfFileReader, PdfFileWriter
 from reportlab.lib.units import cm
 from reportlab.pdfgen import canvas
-import sys
 import subprocess
 import oss2
 import os
 import json
 
-sys.path.insert(0, "/code/python")
 
 # support chinese
 pdfmetrics.registerFont(ttfonts.TTFont('zenhei', os.path.join(

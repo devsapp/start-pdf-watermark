@@ -69,7 +69,7 @@
 $ s invoke -e '{"pdf_file":"example.pdf", "mark_text": "AliyunFC", "rotate":30}'
 
 # 如果是中文水印, font 为 zenhei 或者 microhei
-$ s invoke -e '{"pdf_file":"example.pdf", "mark_text": "函数计算"", "rotate":30, "font": "zenhei"}'
+$ s invoke -e '{"pdf_file":"example.pdf", "mark_text": "函数计算", "rotate":30, "font": "zenhei"}'
 ```
 
 生成带有水印的 example_out.pdf 示例:
