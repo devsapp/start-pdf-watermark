@@ -2,14 +2,14 @@
 import sys
 sys.path.insert(0, "/code/python")
 
-from reportlab.pdfbase import pdfmetrics, ttfonts
-from PyPDF2 import PdfFileReader, PdfFileWriter
-from reportlab.lib.units import cm
-from reportlab.pdfgen import canvas
-import subprocess
-import oss2
-import os
 import json
+import os
+import oss2
+import subprocess
+from reportlab.pdfgen import canvas
+from reportlab.lib.units import cm
+from PyPDF2 import PdfFileReader, PdfFileWriter
+from reportlab.pdfbase import pdfmetrics, ttfonts
 
 
 # support chinese
@@ -93,7 +93,7 @@ def handler(event, context):
                         creds.access_key_secret, creds.security_token)
     bucket = oss2.Bucket(auth, oss_endpoint, os.environ['OSS_BUCKET'])
     bucket.get_object_to_file(word_file, '/tmp/' + tempfilename)
-    pdf_file = os.path.join(fileDir, shortname + ".pdf")
+    pdf_file = os.path.join(fileDir, shortname + "_out.pdf")
     create_watermark(evt)
     local_pdf_out_file = '/tmp/' + shortname + "_out.pdf"
     add_watermark('/tmp/' + shortname + ".pdf",
