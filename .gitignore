@@ -1,0 +1,7 @@
+tmp
+.s
+.DS_Store
+libreoffice-layer
+libreoffice-layer.zip
+src/code/python
+!src/code/.s
