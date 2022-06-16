@@ -83,14 +83,14 @@ def handler(event, context):
     oss_endpoint = "http://oss-{}-internal.aliyuncs.com".format(region)
     print(event)
     evt = json.loads(event)
-    word_file = evt["pdf_file"]
-    fileDir, tempfilename = os.path.split(word_file)
+    pdf_file = evt["pdf_file"]
+    fileDir, tempfilename = os.path.split(pdf_file)
     shortname, _ = os.path.splitext(tempfilename)
     creds = context.credentials
     auth = oss2.StsAuth(creds.access_key_id,
                         creds.access_key_secret, creds.security_token)
     bucket = oss2.Bucket(auth, oss_endpoint, os.environ['OSS_BUCKET'])
-    bucket.get_object_to_file(word_file, '/tmp/' + tempfilename)
+    bucket.get_object_to_file(pdf_file, '/tmp/' + tempfilename)
     pdf_file = os.path.join(fileDir, shortname + "_out.pdf")
     create_watermark(evt)
     local_pdf_out_file = '/tmp/' + shortname + "_out.pdf"
