@@ -2,7 +2,7 @@ Type: Application
 Name: start-pdf-watermark
 Provider:
   - 阿里云
-Version: 0.0.8
+Version: 0.0.9
 Description: 快速部署一个pdf加水印的应用到阿里云函数计算
 HomePage: https://github.com/devsapp/start-pdf-watermark
 Tags:
@@ -57,10 +57,13 @@ Parameters:
       default: Asia/Shanghai
       description: 创建的应用函数执行时候所在实例的时区, 详情参考 https://docs.oracle.com/middleware/12211/wcs/tag-ref/MISC/TimeZones.html
     ossBucket:
-      title: OSS Bucket
+      title: OSS 存储桶名
       type: string
       default: ''
-      description:  OSS Bucket 名字
+      description: OSS 存储桶名
+      x-bucket:
+        dependency:
+          - region
     roleArn:
       title: RAM角色ARN
       type: string
