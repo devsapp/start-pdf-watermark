@@ -2,7 +2,7 @@ Type: Application
 Name: start-pdf-watermark
 Provider:
   - 阿里云
-Version: 0.0.11
+Version: 0.0.12
 Description: 快速部署一个pdf加水印的应用到阿里云函数计算
 HomePage: https://github.com/devsapp/start-pdf-watermark
 Tags:
@@ -44,7 +44,7 @@ Parameters:
     serviceName:
       title: 服务名
       type: string
-      default: fc-pdf
+      default: fc-pdf-${default-suffix}
       pattern: "^[a-zA-Z_][a-zA-Z0-9-_]{0,127}$"
       description: 服务名称，只能包含字母、数字、下划线和中划线。不能以数字、中划线开头。长度在 1-128 之间
     functionName:
