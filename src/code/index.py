@@ -29,7 +29,7 @@ def add_watermark(pdf_file_in, pdf_file_mark, pdf_file_out):
 
         for i in range(pageNum):
             page = pdf_input.pages[i]
-            page.merge_page(pdf_watermark.pages[i])
+            page.merge_page(pdf_watermark.pages[0])
             page.compress_content_streams()
             pdf_output.add_page(page)
 
