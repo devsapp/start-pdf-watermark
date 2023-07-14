@@ -91,7 +91,12 @@ def handler(event, context):
     auth = oss2.StsAuth(creds.access_key_id,
                         creds.access_key_secret, creds.security_token)
     bucket = oss2.Bucket(auth, oss_endpoint, os.environ['OSS_BUCKET'])
-    bucket.get_object_to_file(pdf_file, '/tmp/' + tempfilename)
+
+     try:
+        bucket.get_object_to_file(pdf_file, '/tmp/' + tempfilename)
+    except Exception as err:
+        return "get target file failed, error " + repr(err)
+        
     pdf_file = os.path.join(fileDir, shortname + "_out.pdf")
     create_watermark(evt)
     local_pdf_out_file = '/tmp/' + shortname + "_out.pdf"
