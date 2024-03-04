@@ -92,7 +92,7 @@ def handler(event, context):
                         creds.access_key_secret, creds.security_token)
     bucket = oss2.Bucket(auth, oss_endpoint, os.environ['OSS_BUCKET'])
 
-     try:
+    try:
         bucket.get_object_to_file(pdf_file, '/tmp/' + tempfilename)
     except Exception as err:
         return "get target file failed, error " + repr(err)
