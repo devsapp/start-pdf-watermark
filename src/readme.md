@@ -16,7 +16,7 @@
 
 <description>
 
-快速部署一个pdf加水印的应用到阿里云函数计算
+本案例将 PDF Watermark，这一方便且实用的工具，快速创建并部署到阿里云函数计算 FC。
 
 </description>
 
@@ -40,9 +40,9 @@
 
 
 
-| 服务/业务 |  权限  |
-| --- |  --- |
-| 函数计算 |  AliyunFCFullAccess |
+| 服务/业务 |  权限  | 相关文档 |
+| --- |  --- | --- |
+| 函数计算 |  AliyunFCFullAccess | [帮助文档](https://help.aliyun.com/product/2508973.html) [计费文档](https://help.aliyun.com/document_detail/2512928.html) |
 
 </service>
 
@@ -75,11 +75,29 @@
    
 </deploy>
 
-## 应用详情
+## 案例介绍
 
 <appdetail id="flushContent">
 
-项目部署完成，可以通过`invoke`命令进行触发/测试, 有如下相关的参数：
+本案例将 PyPDF2，这一广泛使用的 Python 库，快速创建并部署到阿里云函数计算 FC。
+
+PyPDF2 使得处理PDF文件变得既简单又高效。通过这个库，用户可以执行多种对PDF文件的操作，包括读取、写入以及修改PDF。
+
+通过 Serverless 开发平台，您只需要几步，就可以体验  PDF Watermark工具，并享受 Serverless 架构带来的降本提效的技术红利。
+
+</appdetail>
+
+## 使用流程
+
+<usedetail id="flushContent">
+
+项目部署完成，可以通过控制台进行测试：
+
+1、进入函数计算 FC控制台，在左侧导航栏，单击函数
+
+2、在顶部菜单栏，选择地域，然后在函数页面，单击目标函数 oss-invoke-fc
+
+3、在代码页签，单击测试函数右侧的图标，从下拉列表中选择配置测试参数，输入如下示例测试参数，然后单击确定。
 
 ```
 {
@@ -94,28 +112,35 @@
     "density": [198.4251968503937, 283.46456692913387] // 水印密度，水印文字间隔，默认是 [141.73228346456693, 141.73228346456693]，即（7*cm, 10*cm),  表示每个水印文字在横坐标和纵坐标的间隔分别是 7cm 和 10
 }
 ```
+4、单击测试函数，函数执行成功后，查看返回结果。
 
-函数调用成功后，生成的 pdf 文件在和输入的 pdf 文件在相同的 OSS 目录中，比如这个例子是在 example_out.pdf。
+也可以通过 [OpenAPI](https://next.api.aliyun.com/api/FC) ：
 
-比如:
+1、点击左侧导航栏中的函数。
 
-```bash
-$ s invoke -e '{"pdf_file":"example.pdf", "mark_text": "AliyunFC", "rotate":30}'
+2、点击调用函数。
 
-# 如果是中文水印, font 为 zenhei 或者 microhei
-$ s invoke -e '{"pdf_file":"example.pdf", "mark_text": "函数计算", "rotate":30, "font": "zenhei"}'
-```
+3、填写参数配置，点击发起调用。
 
-生成带有水印的 example_out.pdf 示例:
+4、函数执行成功后，查看返回结果，如：
+
+
+![](https://img.alicdn.com/imgextra/i4/O1CN01A8F2vE1W2qb6wpI0O_!!6000000002731-0-tps-2854-1514.jpg)
+
+生成带有水印的 example_out.pdf 示例，生成的 pdf 文件在和输入的 pdf 文件在相同的 OSS 目录中:
 
 ![](https://img.alicdn.com/imgextra/i1/O1CN01Tu6Ovz1gT5GcXhfm0_!!6000000004142-2-tps-647-842.png)
 
-</appdetail>
+### 二次开发
 
-## 使用文档
+您可以通过云端控制台的开发功能进行二次开发。如果您之前是在本地创建的项目案例，也可以在本地项目目录`start-pdf-watermark-v3`文件夹下，对项目进行二次开发。开发完成后，可以通过`s deploy`进行快速部署。
 
-<usedetail id="flushContent">
 </usedetail>
+
+## 注意事项
+
+<matters id="flushContent">
+</matters>
 
 
 <devgroup>
