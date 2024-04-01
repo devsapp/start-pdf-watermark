@@ -16,7 +16,7 @@
 
 <description>
 
-快速部署一个pdf加水印的应用到阿里云函数计算
+本案例将 PDF Watermark，这一方便且实用的工具，快速创建并部署到阿里云函数计算 FC。
 
 </description>
 
@@ -40,9 +40,9 @@
 
 
 
-| 服务/业务 |  权限  |
-| --- |  --- |
-| 函数计算 |  AliyunFCFullAccess |
+| 服务/业务 |  权限  | 相关文档 |
+| --- |  --- | --- |
+| 函数计算 |  AliyunFCFullAccess | [帮助文档](https://help.aliyun.com/product/2508973.html) [计费文档](https://help.aliyun.com/document_detail/2512928.html) |
 
 </service>
 
@@ -75,47 +75,79 @@
    
 </deploy>
 
-## 应用详情
+## 案例介绍
 
 <appdetail id="flushContent">
 
-项目部署完成，可以通过`invoke`命令进行触发/测试, 有如下相关的参数：
+本案例将 PyPDF2，这一广泛使用的 Python 库，快速创建并部署到阿里云函数计算 FC。
+
+PyPDF2 使得处理PDF文件变得既简单又高效。通过这个库，用户可以执行多种对PDF文件的操作，包括读取、写入以及修改PDF。
+
+通过 Serverless 开发平台，您只需要几步，就可以体验  PDF Watermark工具，并享受 Serverless 架构带来的降本提效的技术红利。
+
+</appdetail>
+
+## 使用流程
+
+<usedetail id="flushContent">
+
+### 查看部署的案例
+
+项目部署完成，可以通过控制台进行测试：
+
+1、部署成功后，从资源信息栏，找到对应函数资源，点击函数名称跳转到函数计算控制台，如：
+![](https://img.alicdn.com/imgextra/i1/O1CN01BPKckL1yNjuFgfmgE_!!6000000006567-0-tps-1564-446.jpg)
+2、在代码页签，单击测试函数右侧的图标，从下拉列表中选择配置测试参数，输入如下示例测试参数，然后单击确定。
 
 ```
 {
     "pdf_file": "example.pdf",
-    "mark_text": "AliyunFC",  // 水印文字， 如果给 PDF 加水印，该参数必填
-    "pagesize": [595.275590551181, 841.8897637795275], // 可选参数，默认是 A4 大小， (21*cm, 29.7*cm), 其中 1cm=28.346456692913385
-    "font": "Helvetica", // 字体，可选参数， 默认为 Helvetica,  中文字体可选择为 zenhei 或 microhei
-    "font_size": 30, // 字体d大小，可选参数， 默认为 30
-    "font_color": [0, 0, 0], // 字体颜色，格式为 RGB， 默认为黑色
-    "rotate": 30, // 旋转角度, 可选参数， 默认为 0
-    "opacity": 0.1, // 透明度, 可选参数， 默认为 0.1， 1 表示不透明
-    "density": [198.4251968503937, 283.46456692913387] // 水印密度，水印文字间隔，默认是 [141.73228346456693, 141.73228346456693]，即（7*cm, 10*cm),  表示每个水印文字在横坐标和纵坐标的间隔分别是 7cm 和 10
+    "mark_text": "AliyunFC",  
+    "pagesize": [595.275590551181, 841.8897637795275], 
+    "font": "Helvetica", 
+    "font_size": 30, 
+    "font_color": [0, 0, 0], 
+    "rotate": 30, 
+    "opacity": 0.1, 
+    "density": [198.4251968503937, 283.46456692913387] 
 }
 ```
 
-函数调用成功后，生成的 pdf 文件在和输入的 pdf 文件在相同的 OSS 目录中，比如这个例子是在 example_out.pdf。
 
-比如:
+| 参数 | 是否必填 | 描述 |
+|----------|----------------|------------------|
+| pdf_file | 必填 | pdf文件名称 |
+| mark_text | 必填 | 水印文字， 如果给 PDF 加水印 |
+| pagesize | 可选 | 默认是 A4 大小， (21*cm, 29.7*cm), 其中 1cm=28.346456692913385 |
+| font | 可选 | 字体，默认为 Helvetica,  中文字体可选择为 zenhei 或 microhei |
+| font_size | 可选 | 字体的大小，默认为 30 |
+| font_color | 可选 | 字体颜色，格式为 RGB， 默认为黑色 |
+| rotate | 可选 | 旋转角度，默认为 0 |
+| opacity | 可选 | 透明度，默认为 0.1， 1 表示不透明 |
+| density | 可选 | 水印密度，水印文字间隔，默认是 [141.73228346456693, 141.73228346456693]，即（7*cm, 10*cm),  表示每个水印文字在横坐标和纵坐标的间隔分别是 7cm 和 10 |
+
+3、单击测试函数，函数执行成功后，查看返回结果。
 
 ```bash
-$ s invoke -e '{"pdf_file":"example.pdf", "mark_text": "AliyunFC", "rotate":30}'
-
-# 如果是中文水印, font 为 zenhei 或者 microhei
-$ s invoke -e '{"pdf_file":"example.pdf", "mark_text": "函数计算", "rotate":30, "font": "zenhei"}'
+ upload to oss success!
 ```
 
-生成带有水印的 example_out.pdf 示例:
+如果您需要使用 SDK 调用这个函数， 可以参考  [OpenAPI](https://next.api.aliyun.com/api/FC) 
+
+生成带有水印的 example_out.pdf 示例，生成的 pdf 文件在和输入的 pdf 文件在相同的 OSS 目录中:
 
 ![](https://img.alicdn.com/imgextra/i1/O1CN01Tu6Ovz1gT5GcXhfm0_!!6000000004142-2-tps-647-842.png)
 
-</appdetail>
+### 二次开发
 
-## 使用文档
+您可以通过云端控制台的开发功能进行二次开发。如果您之前是在本地创建的项目案例，也可以在本地项目目录`start-pdf-watermark-v3`文件夹下，对项目进行二次开发。开发完成后，可以通过`s deploy`进行快速部署。
 
-<usedetail id="flushContent">
 </usedetail>
+
+## 注意事项
+
+<matters id="flushContent">
+</matters>
 
 
 <devgroup>
