@@ -124,6 +124,8 @@ def handler(event, context):
     subprocess.check_call(["ls", "-ll", "/tmp"])
     subprocess.check_call("rm -rf /tmp/*", shell=True)
     if result.status == 200:
-        return "upload to oss success!"
+        print("upload to oss success!")
+        return {"code": "Success"}
     else:
-        return "upload fail, error code %s " % result.status
+        print("upload fail, error code %s " % result.status)
+        return {"code": "Failed"}
